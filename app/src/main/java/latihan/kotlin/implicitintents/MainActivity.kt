@@ -18,8 +18,6 @@ class MainActivity : AppCompatActivity() {
         val btnLoc = findViewById<Button>(R.id.open_location_button)
         val btnText= findViewById<Button>(R.id.share_text_button)
 
-        val URL_ADDRES = findViewById<EditText>(R.id.website_edittext)
-
         btnUrl.setOnClickListener {
             Toast.makeText(this,"Open Web Page",Toast.LENGTH_SHORT).show()
             val intent = Intent(Intent.ACTION_VIEW)
@@ -33,6 +31,11 @@ class MainActivity : AppCompatActivity() {
 
         btnText.setOnClickListener {
             Toast.makeText(this,"Succes Send Text",Toast.LENGTH_SHORT).show()
+            val message = findViewById<EditText>(R.id.share_edittext)
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.putExtra(Intent.EXTRA_TEXT, message.toString())
+            intent.type = "image/jpeg"
+            startActivity(Intent.createChooser(intent,"Choose Send To :"))
         }
     }
 }
